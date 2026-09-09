@@ -1,41 +1,26 @@
-# STOP — this is the code, not the demo
+# STOP — this is not the live LotBeacon
 
-You cannot click LotBeacon G2 in this GitHub repo. These files are the recipe book. There is nothing here for a dealer owner or a sales rep to tap.
+This repo is a TypeScript / Grok-preview experiment (sequences, Gong-style intel, Outreach-depth desk). It is **not** the product URL. There is nothing here for a dealer owner or a sales rep to tap.
 
-## Where to actually click
+## Bookmark forever
 
-### A link you can text Tyler right now (works on iPhone and MacBook)
+**https://nathanplatteruser.github.io/lotbeacon/**
 
-**https://nathanplatteruser.github.io/lotbeacon/CLICK-HERE.html**
+Queue · Admin · Owner dashboard · language · thread length · before & after · pricing · vs the field · request a pilot.
 
-Four giant buttons. Pick a door.
+`https://nathanplatteruser.github.io/lotbeacon/grok-demo.html` is an old path. It still works. Do not share it as the demo.
 
-- **iPhone · sales / BDM** → live Messenger thread (Craig wants $2,500 off. You still hit Send.)
-- **MacBook · anyone showing the floor** → full showcase
-- **Owner / GSM** → vs-the-field matrix + pricing
-
-### LotBeacon G2 (this repo) — the full Outreach-depth desk
-
-Sequences, Gong-style intel, owner dashboard. That runs in the **Grok live preview**, not in these files.
-
-On iPhone or MacBook: stay in the Grok conversation. Tap one of the four giant **Click here** buttons on the landing page.
-
-Do not click folders named `src`, `public`, or `package.json`. That is not the product.
+If someone sent you `github.com/nathanplatteruser/LotBeacon_G2`, send them the simple Pages URL instead.
 
 ---
 
-## What you are walking into
+## What this repo actually is
 
-Pilot store: **Zoellner Ford**, Beatrice, NE. Fake customers. Send does not leave the device.
+TanStack Start + React 19 source for an experimental desk that ran in a Grok live preview. Recipe book, not the clickable product.
 
-| If you tapped… | You sit as | You land on | Try this |
-|---|---|---|---|
-| Sales / BDM | Jordan Hale, BDC setter | Queue or Inbox | Open **Sarah Miller**. Offer a Saturday slot. Hit Send. |
-| Owner / GSM | Morgan Blake, GSM | Owner dashboard | Change show-rate. Watch return dollars move. |
+Pilot store in the recordings: **Zoellner Ford**, Beatrice, NE. Fake customers. Send does not leave the device.
 
-Switch desks anytime in the left menu (phone: **More**). Cream bar at the top always tells you who you are.
-
-## Product rules
+## Product rules (same as the live desk)
 
 - A human hits Send. Nothing autonomous.
 - Inventory is the only source of vehicle claims.
@@ -43,6 +28,6 @@ Switch desks anytime in the left menu (phone: **More**). Cream bar at the top al
 - Opt-out is forever.
 - The 24-hour Messenger window is a real clock.
 
-## For developers only (ignore if you just want the demo)
+## For developers only
 
-TanStack Start + React 19. `npm install` then `npm run dev`.
+`npm install` then `npm run dev`. Ignore this section if you just want the demo — use the bookmark URL above.
