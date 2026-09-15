@@ -878,7 +878,7 @@ export const useApp = create<Store>()(
         set((s) => ({ ...applySeed(), selectedThreadId: "t_sarah", assumptions: DEFAULT_ASSUMPTIONS, threadLength: s.threadLength })),
     }),
     {
-      name: "lotbeacon-g2-v11",
+      name: "lotbeacon-g2-v12",
       partialize: (s) => ({
         currentRepId: s.currentRepId,
         selectedThreadId: s.selectedThreadId,
@@ -897,7 +897,7 @@ export const useApp = create<Store>()(
       }),
       onRehydrateStorage: () => (state) => {
         if (!state) return;
-        if (state.version !== 11) {
+        if (state.version !== 12) {
           const fresh = applySeed();
           Object.assign(state, fresh);
         }

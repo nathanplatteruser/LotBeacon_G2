@@ -105,7 +105,7 @@ export function buildBrief(
   if (!said.tradeValue) notSaid.push("No trade value");
   if (!said.discount) notSaid.push("No discount");
   const financeFocus = thread.facts.filter((f) =>
-    /trade|payment|budget|who|vehicle|spouse|kids|process|drivetrain|use_case/.test(f.key),
+    /trade|payment|budget|who|vehicle|spouse|kids|process|drivetrain|use_case|credit|purchase_timing|show_intent|timing|visit/.test(f.key),
   );
   return {
     audience,

@@ -467,7 +467,7 @@ function lowFrictionAsk(thread: Thread, draft: string): string {
   if (needsWaitApology(thread)) return "";
   const customer = thread.messages.filter((m) => m.who === "customer").map((m) => m.text).join("\n");
   const reps = `${thread.messages.filter((m) => m.who === "rep").map((m) => m.text).join("\n")} ${draft}`;
-  const knownTrade = thread.facts.some((f) => f.key === "trade") || /\btrade\b|\baccord\b|\bf-150\b/i.test(customer);
+  const knownTrade = thread.facts.some((f) => f.key === "trade") || /\btrade\b|\baccord\b|\bsilverado\b|\bchevy\b/i.test(customer);
   const askedTrade = /bringing a trade|trade, or just/i.test(reps);
   const askedRide = /anyone (riding|coming|with you)|riding along/i.test(reps);
   if (/don'?t send anyone|don'?t (call|text) me/i.test(inboundCluster(thread).latest)) return "";

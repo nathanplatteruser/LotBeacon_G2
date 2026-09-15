@@ -132,6 +132,68 @@ function msg(
 
 export const THREADS: Thread[] = [
   {
+    id: "t_riley",
+    customerName: "Riley Grant",
+    phone: "(402) 555-0182",
+    email: "riley.grant@example.com",
+    city: "Wymore",
+    channel: "messenger",
+    source: "Facebook Marketplace",
+    assignedRepId: "r_alex",
+    setterId: "r_jordan",
+    stage: "engage",
+    dnc: false,
+    takeover: false,
+    hint: "Vague ping · warms into a closer packet",
+    vehicleStock: "P2401",
+    goal: "Let them talk. Log the dump. Book with a full packet.",
+    missing: "which listing · a locked time · who sits",
+    facts: [
+      { id: "f1", key: "vehicle", value: "Marketplace listing they pinged", certainty: "tentative", evidence: "hey is this still available?" },
+    ],
+    messages: [
+      msg("m1", 2, "customer", "Riley Grant", "hey is this still available?"),
+    ],
+    demoScript: [
+      "yeah the white f150. just poking around, not even sure if i should come in",
+      "i've got a 2016 silverado 1500, 118k, some rust on the rockers but it runs. happy to bring it",
+      "credit's like 720 last i checked. not asking you to run numbers in here, just being honest",
+      "lease is up october 1 so i need something this month",
+      "wife wants to sit in it. kids in boosters. i'll show if the truck is actually there. like 90 percent",
+      "we drive in snow and i tow an 18ft boat on weekends",
+      "saturday morning is easiest. 10:00 if that's real",
+      "who do i ask for. also where's the lot",
+      "anything i should bring besides the title and the chevy",
+      "saturday 10. we'll be there. whatever finance needs, i'll share it",
+      "oh and i'm the only decision if it works. wife just wants to sit",
+      "4wd right? i don't want a 2wd by accident",
+      "miles on that white one again?",
+      "do i need an appointment on paper",
+      "we'll be there saturday. thanks for not making this weird",
+    ],
+    demoCursor: 0,
+    voice: "jon",
+    lastInboundAt: ago(2),
+    lastActivityAt: ago(2),
+    createdAt: ago(2),
+    appointmentId: null,
+    sequenceEnrollmentId: "e_riley",
+    intel: {
+      score: 42,
+      sentiment: "neutral",
+      propensityToShow: 0.26,
+      trend: "up",
+      trackers: ["vague", "marketplace"],
+      risks: ["One-line ping. No unit named yet."],
+      nextStepSet: false,
+      coaching: "Confirm the white F-150 XLT is here. One easy question. Don't dump a form. They will over-share if you stay human.",
+      moments: [
+        { at: ago(2), label: "Vague ping", kind: "commit", quote: "hey is this still available?" },
+      ],
+    },
+    draft: { text: "", voice: "jon", claims: [], slots: [], producer: "rules" },
+  },
+  {
     id: "t_sarah",
     customerName: "Sarah Miller",
     phone: "(402) 555-0144",
@@ -1198,6 +1260,7 @@ function nextSaturday(hour: number) {
 }
 
 export const ENROLLMENTS: Enrollment[] = [
+  { id: "e_riley", sequenceId: "seq_mkt", threadId: "t_riley", status: "active", stepIndex: 0, enrolledAt: ago(2), nextAt: ago(2) },
   { id: "e_sarah", sequenceId: "seq_mkt", threadId: "t_sarah", status: "replied", stepIndex: 0, enrolledAt: ago(190), nextAt: ago(3) },
   { id: "e_jen", sequenceId: "seq_mkt", threadId: "t_jen", status: "active", stepIndex: 0, enrolledAt: ago(80), nextAt: ago(8) },
   { id: "e_pat", sequenceId: "seq_mkt", threadId: "t_pat", status: "active", stepIndex: 2, enrolledAt: ago(130), nextAt: ahead(90) },
@@ -1471,7 +1534,7 @@ export const PACKAGES: CommsPackage[] = [
 
 export function buildSeed() {
   return {
-    version: 11,
+    version: 12,
     currentRepId: "r_alex" as string,
     selectedThreadId: "t_sarah" as string | null,
     vehicles: VEHICLES.map((v) => ({ ...v })),

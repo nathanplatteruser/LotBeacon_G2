@@ -214,10 +214,10 @@ function cnCard(featured: boolean) {
 
 function PreviewQueue() {
   const rows = [
+    ["Riley Grant", "Reply now", "Vague ping · will over-share"],
     ["Sarah Miller", "Reply now", "Ghosted three pings · Lincoln"],
     ["Mike Torres", "Reply now", "Took manager as an insult"],
     ["Jen Alvarez", "Reply now", "Ghosted SMS · under 40k"],
-    ["Harold Finch", "Book now", "Checkbook. Keys pulled."],
   ];
   return (
     <div className="mt-8 overflow-hidden rounded-lg border border-border">

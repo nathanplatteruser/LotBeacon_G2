@@ -89,6 +89,9 @@ const FACT_LABEL: Record<string, string> = {
   objection: "Risk",
   contact: "Contact",
   visit: "Show",
+  credit: "Credit",
+  purchase_timing: "Buy window",
+  show_intent: "Show odds",
 };
 
 export function InboxWorkspace() {
