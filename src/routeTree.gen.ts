@@ -11,15 +11,28 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/app'
+import { Route as ClickHereRouteImport } from './routes/click-here'
+import { Route as CompareRouteImport } from './routes/compare'
+import { Route as DesignRouteImport } from './routes/design'
+import { Route as DeskRouteImport } from './routes/desk'
+import { Route as ImpactRouteImport } from './routes/impact'
+import { Route as LeavebehindRouteImport } from './routes/leavebehind'
+import { Route as PilotRouteImport } from './routes/pilot'
+import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as ReviewRouteImport } from './routes/review'
+import { Route as SpotRouteImport } from './routes/spot'
 import { Route as AppIndexRouteImport } from './routes/app/index'
+import { Route as AppAdminRouteImport } from './routes/app/admin'
 import { Route as AppAnalyticsRouteImport } from './routes/app/analytics'
 import { Route as AppAppointmentsRouteImport } from './routes/app/appointments'
+import { Route as AppHandoffsRouteImport } from './routes/app/handoffs'
 import { Route as AppInboxRouteImport } from './routes/app/inbox'
 import { Route as AppIntelRouteImport } from './routes/app/intel'
 import { Route as AppInventoryRouteImport } from './routes/app/inventory'
 import { Route as AppPipelineRouteImport } from './routes/app/pipeline'
 import { Route as AppSequencesRouteImport } from './routes/app/sequences'
 import { Route as AppTeamRouteImport } from './routes/app/team'
+import { Route as AppBriefThreadIdRouteImport } from './routes/app/brief.$threadId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -31,9 +44,64 @@ const AppRoute = AppRouteImport.update({
   path: '/app',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ClickHereRoute = ClickHereRouteImport.update({
+  id: '/click-here',
+  path: '/click-here',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompareRoute = CompareRouteImport.update({
+  id: '/compare',
+  path: '/compare',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DesignRoute = DesignRouteImport.update({
+  id: '/design',
+  path: '/design',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeskRoute = DeskRouteImport.update({
+  id: '/desk',
+  path: '/desk',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImpactRoute = ImpactRouteImport.update({
+  id: '/impact',
+  path: '/impact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeavebehindRoute = LeavebehindRouteImport.update({
+  id: '/leavebehind',
+  path: '/leavebehind',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PilotRoute = PilotRouteImport.update({
+  id: '/pilot',
+  path: '/pilot',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReviewRoute = ReviewRouteImport.update({
+  id: '/review',
+  path: '/review',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SpotRoute = SpotRouteImport.update({
+  id: '/spot',
+  path: '/spot',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AppIndexRoute = AppIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAdminRoute = AppAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => AppRoute,
 } as any)
 const AppAnalyticsRoute = AppAnalyticsRouteImport.update({
@@ -44,6 +112,11 @@ const AppAnalyticsRoute = AppAnalyticsRouteImport.update({
 const AppAppointmentsRoute = AppAppointmentsRouteImport.update({
   id: '/appointments',
   path: '/appointments',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppHandoffsRoute = AppHandoffsRouteImport.update({
+  id: '/handoffs',
+  path: '/handoffs',
   getParentRoute: () => AppRoute,
 } as any)
 const AppInboxRoute = AppInboxRouteImport.update({
@@ -76,12 +149,29 @@ const AppTeamRoute = AppTeamRouteImport.update({
   path: '/team',
   getParentRoute: () => AppRoute,
 } as any)
+const AppBriefThreadIdRoute = AppBriefThreadIdRouteImport.update({
+  id: '/brief/$threadId',
+  path: '/brief/$threadId',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
+  '/click-here': typeof ClickHereRoute
+  '/compare': typeof CompareRoute
+  '/design': typeof DesignRoute
+  '/desk': typeof DeskRoute
+  '/impact': typeof ImpactRoute
+  '/leavebehind': typeof LeavebehindRoute
+  '/pilot': typeof PilotRoute
+  '/pricing': typeof PricingRoute
+  '/review': typeof ReviewRoute
+  '/spot': typeof SpotRoute
+  '/app/admin': typeof AppAdminRoute
   '/app/analytics': typeof AppAnalyticsRoute
   '/app/appointments': typeof AppAppointmentsRoute
+  '/app/handoffs': typeof AppHandoffsRoute
   '/app/inbox': typeof AppInboxRoute
   '/app/intel': typeof AppIntelRoute
   '/app/inventory': typeof AppInventoryRoute
@@ -89,11 +179,24 @@ export interface FileRoutesByFullPath {
   '/app/sequences': typeof AppSequencesRoute
   '/app/team': typeof AppTeamRoute
   '/app/': typeof AppIndexRoute
+  '/app/brief/$threadId': typeof AppBriefThreadIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/click-here': typeof ClickHereRoute
+  '/compare': typeof CompareRoute
+  '/design': typeof DesignRoute
+  '/desk': typeof DeskRoute
+  '/impact': typeof ImpactRoute
+  '/leavebehind': typeof LeavebehindRoute
+  '/pilot': typeof PilotRoute
+  '/pricing': typeof PricingRoute
+  '/review': typeof ReviewRoute
+  '/spot': typeof SpotRoute
+  '/app/admin': typeof AppAdminRoute
   '/app/analytics': typeof AppAnalyticsRoute
   '/app/appointments': typeof AppAppointmentsRoute
+  '/app/handoffs': typeof AppHandoffsRoute
   '/app/inbox': typeof AppInboxRoute
   '/app/intel': typeof AppIntelRoute
   '/app/inventory': typeof AppInventoryRoute
@@ -101,13 +204,26 @@ export interface FileRoutesByTo {
   '/app/sequences': typeof AppSequencesRoute
   '/app/team': typeof AppTeamRoute
   '/app': typeof AppIndexRoute
+  '/app/brief/$threadId': typeof AppBriefThreadIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
+  '/click-here': typeof ClickHereRoute
+  '/compare': typeof CompareRoute
+  '/design': typeof DesignRoute
+  '/desk': typeof DeskRoute
+  '/impact': typeof ImpactRoute
+  '/leavebehind': typeof LeavebehindRoute
+  '/pilot': typeof PilotRoute
+  '/pricing': typeof PricingRoute
+  '/review': typeof ReviewRoute
+  '/spot': typeof SpotRoute
+  '/app/admin': typeof AppAdminRoute
   '/app/analytics': typeof AppAnalyticsRoute
   '/app/appointments': typeof AppAppointmentsRoute
+  '/app/handoffs': typeof AppHandoffsRoute
   '/app/inbox': typeof AppInboxRoute
   '/app/intel': typeof AppIntelRoute
   '/app/inventory': typeof AppInventoryRoute
@@ -115,14 +231,27 @@ export interface FileRoutesById {
   '/app/sequences': typeof AppSequencesRoute
   '/app/team': typeof AppTeamRoute
   '/app/': typeof AppIndexRoute
+  '/app/brief/$threadId': typeof AppBriefThreadIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/app'
+    | '/click-here'
+    | '/compare'
+    | '/design'
+    | '/desk'
+    | '/impact'
+    | '/leavebehind'
+    | '/pilot'
+    | '/pricing'
+    | '/review'
+    | '/spot'
+    | '/app/admin'
     | '/app/analytics'
     | '/app/appointments'
+    | '/app/handoffs'
     | '/app/inbox'
     | '/app/intel'
     | '/app/inventory'
@@ -130,11 +259,24 @@ export interface FileRouteTypes {
     | '/app/sequences'
     | '/app/team'
     | '/app/'
+    | '/app/brief/$threadId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/click-here'
+    | '/compare'
+    | '/design'
+    | '/desk'
+    | '/impact'
+    | '/leavebehind'
+    | '/pilot'
+    | '/pricing'
+    | '/review'
+    | '/spot'
+    | '/app/admin'
     | '/app/analytics'
     | '/app/appointments'
+    | '/app/handoffs'
     | '/app/inbox'
     | '/app/intel'
     | '/app/inventory'
@@ -142,12 +284,25 @@ export interface FileRouteTypes {
     | '/app/sequences'
     | '/app/team'
     | '/app'
+    | '/app/brief/$threadId'
   id:
     | '__root__'
     | '/'
     | '/app'
+    | '/click-here'
+    | '/compare'
+    | '/design'
+    | '/desk'
+    | '/impact'
+    | '/leavebehind'
+    | '/pilot'
+    | '/pricing'
+    | '/review'
+    | '/spot'
+    | '/app/admin'
     | '/app/analytics'
     | '/app/appointments'
+    | '/app/handoffs'
     | '/app/inbox'
     | '/app/intel'
     | '/app/inventory'
@@ -155,11 +310,22 @@ export interface FileRouteTypes {
     | '/app/sequences'
     | '/app/team'
     | '/app/'
+    | '/app/brief/$threadId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AppRoute: typeof AppRouteWithChildren
+  ClickHereRoute: typeof ClickHereRoute
+  CompareRoute: typeof CompareRoute
+  DesignRoute: typeof DesignRoute
+  DeskRoute: typeof DeskRoute
+  ImpactRoute: typeof ImpactRoute
+  LeavebehindRoute: typeof LeavebehindRoute
+  PilotRoute: typeof PilotRoute
+  PricingRoute: typeof PricingRoute
+  ReviewRoute: typeof ReviewRoute
+  SpotRoute: typeof SpotRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -178,11 +344,88 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/click-here': {
+      id: '/click-here'
+      path: '/click-here'
+      fullPath: '/click-here'
+      preLoaderRoute: typeof ClickHereRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/compare': {
+      id: '/compare'
+      path: '/compare'
+      fullPath: '/compare'
+      preLoaderRoute: typeof CompareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/design': {
+      id: '/design'
+      path: '/design'
+      fullPath: '/design'
+      preLoaderRoute: typeof DesignRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/desk': {
+      id: '/desk'
+      path: '/desk'
+      fullPath: '/desk'
+      preLoaderRoute: typeof DeskRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/impact': {
+      id: '/impact'
+      path: '/impact'
+      fullPath: '/impact'
+      preLoaderRoute: typeof ImpactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/leavebehind': {
+      id: '/leavebehind'
+      path: '/leavebehind'
+      fullPath: '/leavebehind'
+      preLoaderRoute: typeof LeavebehindRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pilot': {
+      id: '/pilot'
+      path: '/pilot'
+      fullPath: '/pilot'
+      preLoaderRoute: typeof PilotRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/review': {
+      id: '/review'
+      path: '/review'
+      fullPath: '/review'
+      preLoaderRoute: typeof ReviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/spot': {
+      id: '/spot'
+      path: '/spot'
+      fullPath: '/spot'
+      preLoaderRoute: typeof SpotRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/app/': {
       id: '/app/'
       path: '/'
       fullPath: '/app/'
       preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/admin': {
+      id: '/app/admin'
+      path: '/admin'
+      fullPath: '/app/admin'
+      preLoaderRoute: typeof AppAdminRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/analytics': {
@@ -197,6 +440,13 @@ declare module '@tanstack/react-router' {
       path: '/appointments'
       fullPath: '/app/appointments'
       preLoaderRoute: typeof AppAppointmentsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/handoffs': {
+      id: '/app/handoffs'
+      path: '/handoffs'
+      fullPath: '/app/handoffs'
+      preLoaderRoute: typeof AppHandoffsRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/inbox': {
@@ -241,12 +491,21 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppTeamRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/brief/$threadId': {
+      id: '/app/brief/$threadId'
+      path: '/brief/$threadId'
+      fullPath: '/app/brief/$threadId'
+      preLoaderRoute: typeof AppBriefThreadIdRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
 interface AppRouteChildren {
+  AppAdminRoute: typeof AppAdminRoute
   AppAnalyticsRoute: typeof AppAnalyticsRoute
   AppAppointmentsRoute: typeof AppAppointmentsRoute
+  AppHandoffsRoute: typeof AppHandoffsRoute
   AppInboxRoute: typeof AppInboxRoute
   AppIntelRoute: typeof AppIntelRoute
   AppInventoryRoute: typeof AppInventoryRoute
@@ -254,11 +513,14 @@ interface AppRouteChildren {
   AppSequencesRoute: typeof AppSequencesRoute
   AppTeamRoute: typeof AppTeamRoute
   AppIndexRoute: typeof AppIndexRoute
+  AppBriefThreadIdRoute: typeof AppBriefThreadIdRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppAdminRoute: AppAdminRoute,
   AppAnalyticsRoute: AppAnalyticsRoute,
   AppAppointmentsRoute: AppAppointmentsRoute,
+  AppHandoffsRoute: AppHandoffsRoute,
   AppInboxRoute: AppInboxRoute,
   AppIntelRoute: AppIntelRoute,
   AppInventoryRoute: AppInventoryRoute,
@@ -266,6 +528,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppSequencesRoute: AppSequencesRoute,
   AppTeamRoute: AppTeamRoute,
   AppIndexRoute: AppIndexRoute,
+  AppBriefThreadIdRoute: AppBriefThreadIdRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
@@ -273,6 +536,16 @@ const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppRoute: AppRouteWithChildren,
+  ClickHereRoute: ClickHereRoute,
+  CompareRoute: CompareRoute,
+  DesignRoute: DesignRoute,
+  DeskRoute: DeskRoute,
+  ImpactRoute: ImpactRoute,
+  LeavebehindRoute: LeavebehindRoute,
+  PilotRoute: PilotRoute,
+  PricingRoute: PricingRoute,
+  ReviewRoute: ReviewRoute,
+  SpotRoute: SpotRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

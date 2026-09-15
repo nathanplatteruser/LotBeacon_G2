@@ -1,5 +1,5 @@
 export type Channel = "messenger" | "sms" | "email" | "phone" | "lot";
-export type Role = "sales" | "bdc" | "bdc_manager" | "gsm";
+export type Role = "sales" | "bdc" | "bdc_manager" | "gsm" | "finance";
 export type Stage = "engage" | "qualify" | "book" | "visit" | "sold" | "lost";
 export type Bucket =
   | "reply_now"
@@ -13,8 +13,31 @@ export type VehicleStatus = "available" | "pending" | "sold" | "hold";
 export type ClaimSeverity = "ok" | "warn" | "block";
 export type ApptStatus = "proposed" | "confirmed" | "completed" | "no_show" | "cancelled";
 export type SequenceStatus = "active" | "paused" | "finished" | "replied";
+export type CrmTarget = "vinsolutions" | "elead" | "drivecentric" | "dealersocket";
+export type CrmPushStatus = "unsent" | "queued" | "sent" | "acked" | "failed";
+export type CrmTrigger = "first_contact" | "book" | "manual" | "sold";
+export type CallOutcome = "reached" | "voicemail" | "no_answer" | "busy";
+export type PackageAudience = "finance" | "sales_manager";
+export type PackageStatus = "sent" | "opened";
 
+export type SlotPair = "default" | "morning" | "afternoon";
 export type VoiceId = "auto" | "frank" | "celeste" | "jon" | "dogg" | "zee";
+
+export type Intent =
+  | "opt_out"
+  | "sold_elsewhere"
+  | "complaint"
+  | "reschedule"
+  | "hold"
+  | "warranty"
+  | "delivery"
+  | "financing"
+  | "trade"
+  | "price"
+  | "availability"
+  | "schedule"
+  | "vehicle_search"
+  | "general";
 
 export interface Rep {
   id: string;
@@ -37,6 +60,15 @@ export interface Vehicle {
   price: number;
   status: VehicleStatus;
   drivetrain: string;
+  source?: string;
+  retrievedAt?: string;
+  accidentHistory?: "none" | "reported";
+  smoker?: boolean;
+  priorOwners?: number;
+  titleStatus?: "clean" | "salvage" | "rebuilt";
+  thirdRow?: boolean;
+  seats?: number;
+  boosterOk?: boolean;
 }
 
 export interface Fact {
@@ -55,6 +87,7 @@ export interface Message {
   sender: string;
   channel: Channel;
   text: string;
+  subject?: string;
 }
 
 export interface Claim {
@@ -75,6 +108,8 @@ export interface Draft {
   claims: Claim[];
   slots: Slot[];
   producer: "rules" | "grok" | "rep";
+  subject?: string;
+  talkingPoints?: string[];
 }
 
 export interface Moment {
@@ -101,8 +136,10 @@ export interface Thread {
   id: string;
   customerName: string;
   phone: string;
+  email?: string;
   city: string;
   channel: Channel;
+  outboundChannel?: Channel;
   source: string;
   assignedRepId: string;
   setterId?: string;
@@ -119,6 +156,10 @@ export interface Thread {
   demoCursor: number;
   ghostUntil?: string | null;
   voice: VoiceId;
+  voiceLocked?: boolean;
+  voiceReason?: string;
+  followupStage?: number;
+  slotPair?: SlotPair;
   lastInboundAt: string;
   lastActivityAt: string;
   createdAt: string;
@@ -126,6 +167,8 @@ export interface Thread {
   sequenceEnrollmentId: string | null;
   intel: Intel;
   draft: Draft;
+  emailSubject?: string;
+  callPlacedAt?: string | null;
 }
 
 export interface Appointment {
@@ -188,9 +231,99 @@ export interface CallRecording {
   coaching: string[];
 }
 
+export interface CrmPush {
+  id: string;
+  threadId: string;
+  target: CrmTarget;
+  status: CrmPushStatus;
+  trigger: CrmTrigger;
+  at: string;
+  leadId: string;
+  note: string;
+  xml?: string;
+}
+
+export interface CommsPackage {
+  id: string;
+  threadId: string;
+  audience: PackageAudience;
+  toRepId: string;
+  fromRepId: string;
+  status: PackageStatus;
+  sentAt: string;
+  openedAt?: string;
+  note: string;
+}
+
 export interface Dealer {
   name: string;
   address: string;
   timezone: string;
   hours: Record<string, string>;
+  smsNumber: string;
+  crmDealerId: string;
+  crmTarget: CrmTarget;
+}
+
+export interface Assumptions {
+  baselineMinutesPerReply: number;
+  assistedMinutesAccept: number;
+  assistedMinutesEdit: number;
+  manualMinutes: number;
+  loadedRepHourlyCost: number;
+  appointmentShowRate: number;
+  showCloseRate: number;
+  grossPerUnit: number;
+  valueOfPreventedFalseClaim: number;
+}
+
+export interface ExplainStep {
+  step: string;
+  label: string;
+  detail: string;
+  claims?: { text: string; verdict: string; note?: string }[];
+}
+
+export interface Classification {
+  intent: Intent;
+  sentiment: "angry" | "positive" | "negative" | "neutral";
+  objection: string | null;
+  confidence: number;
+  signals: string[];
+}
+
+export interface AnalyzeResult {
+  stored: boolean;
+  customerName: string;
+  intent: Intent;
+  sentiment: Classification["sentiment"];
+  objection: string | null;
+  confidence: number;
+  leadState: Stage;
+  recommendedAction: string;
+  nbaReason: string;
+  voice: VoiceId;
+  facts: Fact[];
+  vehicle: Vehicle | null;
+  draft: Draft;
+  explain: ExplainStep[];
+  booking: { slots: Slot[] } | null;
+}
+
+export type InterceptKind = "outbound_blocked" | "inbound_flagged";
+export type InterceptStatus = "held" | "late" | "released";
+
+export interface Intercept {
+  id: string;
+  threadId: string;
+  customerName: string;
+  at: string;
+  kind: InterceptKind;
+  channel: Channel;
+  quote: string;
+  sticker?: string;
+  reason: string;
+  savedMinutes: number;
+  status: InterceptStatus;
+  repId: string;
 }

@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { InventoryEvidence } from "@/components/copilot-panels";
 import { findVehicle, vehicleLabel } from "@/lib/engine";
 import { miles, money } from "@/lib/format";
 import { useApp } from "@/lib/store";
@@ -44,7 +45,12 @@ function InventoryPage() {
               const using = threads.filter((t) => t.vehicleStock === v.stock);
               return (
                 <tr key={v.stock} className="border-t border-border">
-                  <td className="px-3 py-3 font-mono text-[12px]">{v.stock}</td>
+                  <td className="px-3 py-3 font-mono text-[12px]">
+                    {v.stock}
+                    <div>
+                      <InventoryEvidence vehicle={v} compact />
+                    </div>
+                  </td>
                   <td className="px-3 py-3">
                     {vehicleLabel(v)}
                     <div className="text-[12px] text-muted-foreground">
@@ -90,7 +96,7 @@ function InventoryPage() {
       </div>
       {findVehicle(vehicles, "T2401")?.status === "sold" && (
         <p className="mt-4 text-sm text-destructive">
-          Tahoe Premier is sold. Sarah’s “still available” claim will block Send until the draft is rewritten.
+          Explorer Platinum is sold. Sarah’s “still available” claim will block Send until the draft is rewritten.
         </p>
       )}
     </div>

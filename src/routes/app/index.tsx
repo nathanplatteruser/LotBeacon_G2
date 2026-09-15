@@ -1,10 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { InboxWorkspace } from "@/components/inbox-workspace";
+import { createFileRoute, Navigate } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/app/")({
-  component: QueuePage,
+  component: () => <Navigate to="/app/inbox" search={{ as: "sales" }} />,
 });
-
-function QueuePage() {
-  return <InboxWorkspace queueMode />;
-}

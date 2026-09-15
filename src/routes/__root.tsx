@@ -1,8 +1,10 @@
 import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
 import { AuthProvider } from "@/lib/auth/provider";
 import { PreviewHostBridge } from "@/components/preview-host-bridge";
+import { ThemeBar, ThemeProvider, useTheme } from "@/components/theme-bar";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "sonner";
+import { THEME_BOOT_SCRIPT } from "@/lib/theme";
 import appCss from "../styles.css?url";
 
 const APP_NAME = "LotBeacon";
@@ -34,30 +36,42 @@ export const Route = createRootRoute({
     ],
   }),
   component: () => (
-    <html lang="en" suppressHydrationWarning className="antialiased">
+    <html lang="en" suppressHydrationWarning className="antialiased" data-theme="spacex">
       <head>
         <HeadContent />
+        <script dangerouslySetInnerHTML={{ __html: THEME_BOOT_SCRIPT }} />
       </head>
       <body>
         <PreviewHostBridge />
         <AuthProvider>
-          <TooltipProvider delayDuration={250}>
-            <Outlet />
-            <Toaster
-              theme="dark"
-              position="bottom-right"
-              toastOptions={{
-                style: {
-                  background: "#161618",
-                  border: "1px solid #27272a",
-                  color: "#f4f1ea",
-                },
-              }}
-            />
-          </TooltipProvider>
+          <ThemeProvider>
+            <TooltipProvider delayDuration={250}>
+              <ThemeBar />
+              <Outlet />
+              <ThemedToaster />
+            </TooltipProvider>
+          </ThemeProvider>
         </AuthProvider>
         <Scripts />
       </body>
     </html>
   ),
 });
+
+function ThemedToaster() {
+  const { theme } = useTheme();
+  const dark = theme === "spacex";
+  return (
+    <Toaster
+      theme={dark ? "dark" : "light"}
+      position="bottom-right"
+      toastOptions={{
+        style: {
+          background: "var(--color-popover)",
+          border: "1px solid var(--color-border)",
+          color: "var(--color-foreground)",
+        },
+      }}
+    />
+  );
+}

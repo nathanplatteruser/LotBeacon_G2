@@ -14,7 +14,9 @@ export const Route = createFileRoute("/app/intel")({
 function IntelPage() {
   const calls = useApp((s) => s.calls);
   const threads = useApp((s) => s.threads);
-  const [activeId, setActiveId] = useState(calls[0]?.id ?? "");
+  const selectedThreadId = useApp((s) => s.selectedThreadId);
+  const fromThread = calls.find((c) => c.threadId === selectedThreadId);
+  const [activeId, setActiveId] = useState(fromThread?.id ?? calls[0]?.id ?? "");
   const call = calls.find((c) => c.id === activeId) ?? calls[0];
   const thread = threads.find((t) => t.id === call?.threadId);
   const rep = TEAM.find((r) => r.id === call?.repId);

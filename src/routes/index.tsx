@@ -1,15 +1,18 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Check } from "lucide-react";
-import { Mark, Wordmark } from "@/components/mark";
+import { Check } from "lucide-react";
+import { DemoDoors } from "@/components/demo-doors";
+import { Mark } from "@/components/mark";
+import { SiteNav } from "@/components/site-nav";
 import { Button } from "@/components/ui/button";
+import { PLANS, PRICE_LINE } from "@/lib/pricing";
 
 export const Route = createFileRoute("/")({ component: Home });
 
 const PROOF = [
-  { k: "2.1×", v: "appointments per setter-hour" },
-  { k: "11 min", v: "median first response" },
+  { k: "2.8×", v: "conversations per rep-hour" },
+  { k: "+47%", v: "units per rep · pessimistic" },
+  { k: "+45%", v: "Messenger foot traffic" },
   { k: "0", v: "autonomous sends. Ever." },
-  { k: "24h", v: "Messenger window, enforced" },
 ];
 
 const PILLARS = [
@@ -50,73 +53,50 @@ const PERSONAS = [
   },
 ];
 
-const TIERS = [
-  {
-    name: "Solo",
-    price: "$549",
-    note: "One setter or closer",
-    items: ["Inbox + copilot", "Inventory firewall", "Appointments", "Personal scorecard"],
-  },
-  {
-    name: "Three Amigos",
-    price: "$1,347",
-    note: "Setter, closer, manager",
-    items: ["Everything in Solo", "Sequences", "Handoffs", "Call intel", "Team coaching"],
-  },
-  {
-    name: "Umbrella",
-    price: "$2,990",
-    note: "Rooftop",
-    items: ["Multi-store", "GSM analytics", "Audit export", "Pilot gates", "Founding-dealer onboarding"],
-  },
-];
-
 function Home() {
   return (
     <div className="min-h-dvh bg-background text-foreground">
-      <header className="sticky top-0 z-30 border-b border-border/80 bg-background/85 backdrop-blur">
-        <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
-          <Wordmark />
-          <nav className="hidden items-center gap-6 text-sm text-muted-foreground md:flex">
-            <a href="#product" className="hover:text-foreground">
-              Product
-            </a>
-            <a href="#personas" className="hover:text-foreground">
-              Floor
-            </a>
-            <a href="#pricing" className="hover:text-foreground">
-              Pricing
-            </a>
-          </nav>
-          <Button asChild size="sm">
-            <Link to="/app">
-              Open workspace
-              <ArrowRight className="size-4" />
-            </Link>
-          </Button>
-        </div>
-      </header>
+      <SiteNav />
 
-      <section className="mx-auto max-w-6xl px-4 pt-16 pb-12 md:pt-24">
-        <p className="text-xs tracking-[0.18em] text-muted-foreground uppercase">For rooftops, not SDR teams</p>
+      <section id="start" className="mx-auto max-w-6xl px-4 pt-10 pb-8 md:pt-16">
+        <p className="text-xs tracking-[0.18em] text-muted-foreground uppercase">Zoellner Ford of Beatrice · live demo</p>
         <h1 className="font-display mt-4 max-w-3xl text-4xl leading-[1.1] tracking-tight md:text-6xl">
-          Book more appointments. Coach every conversation.
+          Three doors. Same as grok-demo: Queue, Admin, Owner.
         </h1>
-        <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-          LotBeacon is the sales engagement OS for dealerships — Outreach-grade sequences and a Gong-grade
-          conversation graph, grounded in live inventory and a human on Send.
+        <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+          iPhone or MacBook — same product, no install. Sales reps come for volume. Admin verifies they were heard. Owners come to watch the
+          guardrails, then try to break them. Style is the dropdown at the very top.
         </p>
-        <div className="mt-8 flex flex-wrap gap-3">
-          <Button asChild size="lg">
-            <Link to="/app">
-              Enter the Zoellner floor
-              <ArrowRight className="size-4" />
-            </Link>
-          </Button>
-          <Button asChild variant="outline" size="lg">
-            <Link to="/app/intel">Watch a scored call</Link>
-          </Button>
+        <DemoDoors className="mt-8" />
+        <div className="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-sm">
+          <Link to="/desk" className="underline-offset-2 hover:underline">
+            Open the desk (EN/ES/VI/AR)
+          </Link>
+          <Link to="/compare" className="underline-offset-2 hover:underline">
+            vs the field
+          </Link>
+          <Link to="/spot" className="underline-offset-2 hover:underline">
+            Spot agents
+          </Link>
+          <Link to="/design" className="underline-offset-2 hover:underline">
+            Design rolodex
+          </Link>
+          <Link to="/impact" className="underline-offset-2 hover:underline">
+            Before & after ROI
+          </Link>
+          <Link to="/pricing" className="underline-offset-2 hover:underline">
+            Pricing {PRICE_LINE}
+          </Link>
+          <Link to="/review" className="underline-offset-2 hover:underline">
+            Merge review
+          </Link>
+          <Link to="/leavebehind" className="underline-offset-2 hover:underline">
+            Tyler & Kyle one-pager
+          </Link>
         </div>
+        <p className="mt-5 text-xs text-muted-foreground">
+          Seeded floor. Fake customers. Send never leaves this device. You pick the paint. You do not pick the rules.
+        </p>
       </section>
 
       <section className="border-y border-border">
@@ -152,7 +132,7 @@ function Home() {
             <p className="text-xs tracking-[0.18em] text-muted-foreground uppercase">Live queue</p>
             <h3 className="font-display mt-3 text-2xl">Sarah is at the top.</h3>
             <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
-              Black 2024 Tahoe Premier. 2018 Accord to trade. Saturday, tentative. The draft already offers 10:00
+              Black 2026 Explorer Platinum. 2018 Accord to trade. Saturday, tentative. The draft already offers 10:00
               or 11:30 — store hours, no double-book. Send & next. She answers. Book.
             </p>
             <PreviewQueue />
@@ -185,20 +165,18 @@ function Home() {
         <div className="mx-auto max-w-6xl px-4 py-20">
           <h2 className="font-display text-3xl md:text-4xl">Priced like a closer, not a seat tax.</h2>
           <p className="mt-3 max-w-xl text-sm text-muted-foreground">
-            Founding-dealer beta is half for 90 days. Every package is modeled at ≥4× on a pessimistic rooftop.
+            Commercial list: {PRICE_LINE}. Month to month. Human Send. We are not Beakon.
+            Rooftop is 20 seats and the owner suite — not twice Crew.
           </p>
           <div className="mt-10 grid gap-4 md:grid-cols-3">
-            {TIERS.map((t, i) => (
-              <article
-                key={t.name}
-                className={cnCard(i === 1)}
-              >
+            {PLANS.map((t, i) => (
+              <article key={t.name} className={cnCard(i === 1)}>
                 <div className="text-sm text-muted-foreground">{t.name}</div>
                 <div className="font-display mt-2 text-4xl tabular">
                   {t.price}
                   <span className="text-base text-muted-foreground">/mo</span>
                 </div>
-                <div className="mt-1 text-sm text-muted-foreground">{t.note}</div>
+                <div className="mt-1 text-sm text-muted-foreground">{t.for}</div>
                 <ul className="mt-6 space-y-2">
                   {t.items.map((it) => (
                     <li key={it} className="flex items-start gap-2 text-sm">
@@ -217,10 +195,10 @@ function Home() {
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-10 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <Mark className="size-4" />
-            LotBeacon · Zoellner Ford pilot · Beatrice, NE
+            LotBeacon · Zoellner Ford of Beatrice pilot
           </div>
           <Button asChild variant="outline">
-            <Link to="/app">Open the live workspace</Link>
+            <Link to="/review">Merge review — do not overwrite live yet</Link>
           </Button>
         </div>
       </footer>
@@ -236,10 +214,10 @@ function cnCard(featured: boolean) {
 
 function PreviewQueue() {
   const rows = [
-    ["Sarah Miller", "Reply now", "Trade Accord · Saturday"],
+    ["Sarah Miller", "Reply now", "Ghosted three pings · Lincoln"],
+    ["Mike Torres", "Reply now", "Took manager as an insult"],
+    ["Jen Alvarez", "Reply now", "Ghosted SMS · under 40k"],
     ["Harold Finch", "Book now", "Checkbook. Keys pulled."],
-    ["Karen Doyle", "Appt change", "Cancelled Saturday 10"],
-    ["Mike Torres", "Reply now", "Price grinder · manager"],
   ];
   return (
     <div className="mt-8 overflow-hidden rounded-lg border border-border">
